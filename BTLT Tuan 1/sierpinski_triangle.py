@@ -1,6 +1,7 @@
 from webbrowser import get
 import cv2 as cv
 import time
+import sys
 
 def draw_triangle(x, y, z, img):
     color = (255, 250, 255)
@@ -26,20 +27,26 @@ def draw_sierpinski_triangle(A, B, C, img, cnt):
     draw_sierpinski_triangle(MAB,B,MBC,img, cnt - 1)
     draw_sierpinski_triangle(MAC,MBC,C,img, cnt - 1)
 
-path = r"image/A_black_image.jpg"
-img = cv.imread(path)
-dimensions = img.shape
-height = img.shape[0]
-width = img.shape[1]
-triangle_edge = min(height,width)
+def main(count):
+    path = r"image/A_black_image.jpg"
+    img = cv.imread(path)
+    dimensions = img.shape
+    height = img.shape[0]
+    width = img.shape[1]
+    triangle_edge = min(height,width)
 
-triangle_top_point = (int(abs(width) / 2), int(abs(triangle_edge) / 2  - triangle_edge / 4))
-triangle_right_down_point = (int(abs(width - triangle_edge) / 2 + triangle_edge), int(abs(height - triangle_edge) / 2 + triangle_edge  - triangle_edge / 4))
-triangle_left_down_point = (int(abs(width - triangle_edge) / 2), int(abs(height - triangle_edge) / 2 + triangle_edge   - triangle_edge / 4))
+    triangle_top_point = (int(abs(width) / 2), int(abs(triangle_edge) / 2  - triangle_edge / 4))
+    triangle_right_down_point = (int(abs(width - triangle_edge) / 2 + triangle_edge), int(abs(height - triangle_edge) / 2 + triangle_edge  - triangle_edge / 4))
+    triangle_left_down_point = (int(abs(width - triangle_edge) / 2), int(abs(height - triangle_edge) / 2 + triangle_edge   - triangle_edge / 4))
 
-img = draw_triangle(triangle_left_down_point, triangle_top_point, triangle_right_down_point, img)
-draw_sierpinski_triangle(triangle_left_down_point, triangle_top_point, triangle_right_down_point, img, 2)
+    img = draw_triangle(triangle_left_down_point, triangle_top_point, triangle_right_down_point, img)
+    draw_sierpinski_triangle(triangle_left_down_point, triangle_top_point, triangle_right_down_point, img, count)
 
-# Displaying the image
-cv.imshow('image', img)
-cv.waitKey(0)
+    # Displaying the image
+    cv.imshow('image', img)
+    cv.waitKey(0)
+
+if __name__ == "__main__":
+    a = int(sys.argv[1])
+    main(a)
+
