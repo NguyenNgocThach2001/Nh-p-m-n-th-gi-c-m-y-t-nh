@@ -1,3 +1,3 @@
-python3 <filename> <alpha> <scale>
+python3 <filename> <scale>
 
-python3 image_blending.py 0.4 0.2
+python3 image_blending.py 0.2
