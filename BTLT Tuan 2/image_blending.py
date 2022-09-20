@@ -9,7 +9,7 @@ def image_size(img):
 def main(scale = 0.2):
     origin_img = cv2.imread("image/origin.jpg")
     mask_img = cv2.imread("image/mask.png")
-    effect_img = cv2.imread("image/effect.jpg")
+    effect_img = cv2.imread("image/effect1.jpg")
 
     height, width = image_size(origin_img)
     height = int(scale*height)
@@ -27,8 +27,8 @@ def main(scale = 0.2):
     print(image_size(result_img))
 
     while(True):
-        for k in range(10):
-            alpha = 0.1 * k
+        for k in range(20):
+            alpha = 0.05 * k
             for i in range(height):
                 for j in range(width):
                     if(mask_img[i][j][0] != 0):
